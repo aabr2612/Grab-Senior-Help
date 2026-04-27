@@ -215,4 +215,8 @@ marimo/_lsp/
 __marimo__/
 
 # Streamlit
-.streamlit/secrets.toml
+.streamlit/config.toml
+
+GEMINI.md
+context.md
+*.db
