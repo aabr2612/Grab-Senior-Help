@@ -1,245 +1,118 @@
-# Senior Helper App - GrabFood Assistant for Senior Citizens
+# GrabEats Senior Helper 🍜
 
-A user-friendly Streamlit application designed to help senior citizens in Singapore easily order food from GrabFood with simplified interface, large fonts, and AI-powered assistance.
+A user-friendly Streamlit application designed to empower senior citizens in Singapore to discover and order food with ease. Featuring AI-powered recommendations, multilingual support, and a senior-optimized interface.
 
-## Features
+## 🌟 Key Features
 
-### 1. **Easy Restaurant Discovery**
-- Browse restaurants by cuisine type
-- Filter by price range
-- View ratings and reviews
-- Large, readable text and buttons
+### 1. **AI-Powered Food Assistant**
+- **Personalized Recommendations**: Chat with an AI assistant (Google Gemini) to find dishes based on your cravings (e.g., "I want something soft and warm").
+- **Dietary Safety**: Built-in filters for common dietary restrictions (No Pork, No Seafood, Vegetarian, Halal, etc.).
+- **Budget Conscious**: Set a price range per dish to find affordable meals that fit your wallet.
 
-### 2. **Smart Menu Navigation**
-- PDF menu upload and parsing
-- AI-powered search within menus
-- Dietary restrictions support
-- Clear dish descriptions and prices
+### 2. **Senior-Optimized Interface**
+- **Visual Clarity**: Large font sizes, high-contrast colors, and a clean layout designed for easy reading.
+- **Simplified Navigation**: Minimalistic sidebar and intuitive buttons.
+- **Mobile Responsive**: Custom scripts to ensure a smooth experience on tablets and smartphones.
+- **Multilingual**: Full interface support for **English**, **简体中文** (Chinese), **Bahasa Melayu** (Malay), and **தமிழ்** (Tamil).
 
-### 3. **Multilingual Support**
-- English
-- Simplified Chinese (简体中文)
-- Malay (Bahasa Melayu)
-- Tamil (தமிழ்)
+### 3. **Smart Menu Management**
+- **PDF Menu Parsing**: Upload restaurant menus in PDF format. The app uses OCR (Optical Character Recognition) to extract dishes and prices automatically.
+- **Restaurant Discovery**: Browse a curated list of local favorites like Song Fa Bak Kut Teh and Swee Choon.
+- **Persistent History**: Saves your chat interactions and added restaurants for future reference.
 
-### 4. **AI-Powered Chatbot**
-- Personalized restaurant recommendations
-- Dietary preference handling
-- Budget-conscious suggestions
-- Real-time dish search
+## 🛠️ Tech Stack
 
-### 5. **Senior-Friendly Interface**
-- Large font sizes (20pt default)
-- High contrast dark theme
-- Simple navigation
-- Clear call-to-action buttons
-- Voice input support (coming soon)
-
-## Tech Stack
-
-- **Frontend**: Streamlit
-- **Backend**: Python 3.8+
+- **Framework**: [Streamlit](https://streamlit.io/)
+- **AI Engine**: [Google Gemini Pro API](https://aistudio.google.com/)
 - **Database**: SQLite
-- **AI**: Google Gemini API
-- **PDF Processing**: pdfplumber, pytesseract, pdf2image
+- **OCR & PDF Processing**: `pdfplumber`, `pytesseract`, `pdf2image`
+- **Styling**: Custom Vanilla CSS & Google Fonts (Nunito & Lora)
 
-## Installation
+## 📂 Project Structure
+
+```text
+grab-senior-help/
+├── app.py                 # Main entry point & routing
+├── ai_chatbot.py          # Gemini AI integration logic
+├── database.py            # SQLite database management
+├── menu_parser.py         # PDF processing & OCR logic
+├── seed_db.py             # Initial database population script
+├── grab_helper.db         # SQLite database file
+├── components/            # UI components
+│   └── sidebar.py         # Navigation & language selector
+├── config/                # App configuration
+│   ├── languages.py       # Multilingual translations
+│   └── settings.py        # Page config, CSS, & session state
+├── views/                 # Application pages
+│   ├── home.py            # Welcome screen
+│   ├── food_assistant.py  # AI Chat interface
+│   ├── add_restaurant.py  # Menu upload & restaurant creation
+│   └── history.py         # Saved restaurants & chats
+└── requirements.txt       # Python dependencies
+```
+
+## 🚀 Getting Started
 
 ### Prerequisites
-- Python 3.8 or higher
-- pip package manager
-- Tesseract OCR (for PDF menu scanning)
+- Python 3.9+
+- [Tesseract OCR](https://github.com/tesseract-ocr/tesseract) installed on your system.
+- A Google Gemini API Key.
 
-### Steps
+### Installation
 
-1. **Clone the repository**
-```bash
-git clone https://github.com/parthanadathur1307-cmyk/grab-senior-helper.git
-cd grab-senior-helper
-```
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/aabr2612/grab-senior-helper.git
+   cd grab-senior-helper
+   ```
 
-2. **Create a virtual environment**
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
+2. **Set Up Virtual Environment**
+   ```bash
+   python -m venv venv
+   # Windows
+   venv\Scripts\activate
+   # macOS/Linux
+   source venv/bin/activate
+   ```
 
-3. **Install dependencies**
-```bash
-pip install -r requirements.txt
-```
+3. **Install Dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-4. **Set up environment variables**
-Create a `.env` file in the root directory:
-```
-GOOGLE_API_KEY=your_google_api_key_here
-```
+4. **Configure Environment**
+   Create a `.env` file in the root directory:
+   ```env
+   GOOGLE_API_KEY=your_gemini_api_key_here
+   ```
 
-5. **Install Tesseract OCR**
-- **Ubuntu/Debian**: `sudo apt-get install tesseract-ocr`
-- **macOS**: `brew install tesseract`
-- **Windows**: Download from https://github.com/UB-Mannheim/tesseract/wiki
+5. **Initialize Database**
+   ```bash
+   python seed_db.py
+   ```
 
-6. **Run the application**
-```bash
-streamlit run app.py
-```
+6. **Run the App**
+   ```bash
+   streamlit run app.py
+   ```
 
-The app will open at `http://localhost:8501`
+## 📖 Usage Guide
 
-## Usage Guide
+1. **Select Language**: Use the sidebar to switch between English, Chinese, Malay, or Tamil.
+2. **Find Food**: Navigate to **Food Assistant**, enter your preferences/dietary needs, and get recommendations.
+3. **Add Menus**: Go to **Add Restaurant** to upload a PDF menu. The app will extract dishes and add them to your local database.
+4. **View History**: Check **History & Restaurants** to see previously added places and your chat logs.
 
-### For Senior Citizens
+## 🛡️ Accessibility Features
 
-1. **Start the App**: Click the large "Start" button on the home page
-2. **Select Language**: Choose your preferred language
-3. **Browse Restaurants**: 
-   - View restaurants by cuisine
-   - Click on a restaurant to see menu
-4. **Order Food**:
-   - Select dishes you want
-   - Review your order
-   - Place order through GrabFood
+- ✅ **Dynamic Scaling**: Font sizes scale appropriately for various screen sizes.
+- ✅ **High Contrast**: Uses a "Grab-inspired" green and white theme with high legibility.
+- ✅ **Icon-Assisted**: Uses emojis and icons alongside text for better cognitive recognition.
+- ✅ **Simple Actions**: Large, "fat-finger" friendly buttons for easier interaction.
 
-### For Caregivers/Family
+## 📝 License
 
-1. Set dietary preferences for the senior
-2. Set budget limits
-3. Monitor order history
-4. Configure emergency contacts
-
-## Project Structure
-
-```
-grab-senior-helper/
-├── app.py                 # Main Streamlit application
-├── menu_parser.py         # PDF menu parsing and OCR
-├── database.py            # SQLite database management
-├── ai_chatbot.py          # Google Gemini AI integration
-├── .streamlit/
-│   └── config.toml        # Streamlit configuration
-├── requirements.txt       # Python dependencies
-├── README.md             # This file
-└── data/
-    └── restaurants.db    # SQLite database (auto-created)
-```
-
-## Configuration
-
-### Streamlit Config (.streamlit/config.toml)
-
-```toml
-[theme]
-base = "dark"
-primaryColor = "#FF5733"
-fontSize = "20pt"
-fontFamily = "Arial"
-
-[server]
-headless = true
-enableCORS = false
-port = 8501
-```
-
-## API Keys
-
-### Google Gemini API
-1. Go to [Google AI Studio](https://aistudio.google.com/app/apikey)
-2. Create a new API key
-3. Add to `.env` file as `GOOGLE_API_KEY`
-
-## Database Schema
-
-### Tables
-
-**restaurants**
-- id (PRIMARY KEY)
-- name (TEXT)
-- location (TEXT)
-
-**menus**
-- id (PRIMARY KEY)
-- restaurant_id (FOREIGN KEY)
-- name (TEXT)
-
-**dishes**
-- id (PRIMARY KEY)
-- menu_id (FOREIGN KEY)
-- name (TEXT)
-- price (REAL)
-
-## Supported Languages
-
-| Language | Code | Support Level |
-|----------|------|---|
-| English | en | Full |
-| Simplified Chinese | zh | Full |
-| Malay | ms | Full |
-| Tamil | ta | Full |
-
-## Accessibility Features
-
-- ✅ Large default font size (20pt)
-- ✅ High contrast dark theme
-- ✅ Simple, intuitive navigation
-- ✅ Voice input support (beta)
-- ✅ Text-to-speech for menu items (coming soon)
-- ✅ Keyboard navigation support
-
-## Troubleshooting
-
-### "Tesseract not found"
-Install Tesseract OCR following the installation instructions above.
-
-### "API key invalid"
-Check your `.env` file and ensure `GOOGLE_API_KEY` is correctly set.
-
-### "Database locked"
-Close all other instances of the app and try again.
-
-### Slow menu parsing
-For large PDFs, OCR processing may take time. Consider splitting large menus.
-
-## Contributing
-
-Contributions are welcome! Please:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/improvement`)
-3. Make your changes
-4. Commit with clear messages (`git commit -m 'Add feature'`)
-5. Push to the branch (`git push origin feature/improvement`)
-6. Open a Pull Request
-
-## Future Enhancements
-
-- [ ] Voice input and output support
-- [ ] Integration with actual GrabFood API
-- [ ] Order history and favorites
-- [ ] Loyalty rewards tracking
-- [ ] Real-time delivery tracking
-- [ ] Payment integration
-- [ ] Mobile app version
-- [ ] Offline mode support
-- [ ] Family sharing features
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Support
-
-For issues and questions:
-- Create an issue on GitHub
-- Email: parthanadathur1307@gmail.com
-
-## Acknowledgments
-
-- Google Gemini API for AI capabilities
-- Streamlit for the excellent UI framework
-- GrabFood for inspiring this helper app
-- Special thanks to all testers and feedback contributors
+This project is licensed under the MIT License.
 
 ---
-
-**Made with ❤️ for senior citizens in Singapore**
+**Made with ❤️ for the Seniors of Singapore**

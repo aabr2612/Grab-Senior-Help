@@ -6,8 +6,10 @@ class AIChatbot:
     def __init__(self, api_key):
         genai.configure(api_key=api_key)
         self.model_priority = [
-            'gemini-flash-latest',
-            'gemini-2.0-flash'
+            'gemini-2.5-flash',
+            'gemini-2.5-flash-lite',
+            'gemini-2.0-flash',
+            'gemini-2.0-flash-lite',
         ]
         self.current_model_index = 0
         self.model = genai.GenerativeModel(self.model_priority[self.current_model_index])
@@ -22,10 +24,9 @@ class AIChatbot:
 
                     response = model.generate_content(
                         prompt,
-                        request_options={"timeout": 10}  # ✅ prevent hanging
+                        request_options={"timeout": 30}
                     )
 
-                    # ✅ Safe return
                     if response and hasattr(response, "text"):
                         self.current_model_index = i
                         self.model = model
